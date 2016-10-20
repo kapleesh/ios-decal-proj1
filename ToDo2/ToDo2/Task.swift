@@ -11,8 +11,8 @@ import Foundation
 
 class Task {
     var title: String!
-    var complete: Bool!
     var time: NSDate?
+    var complete: Bool!
     
     init(title: String) {
         self.title = title
