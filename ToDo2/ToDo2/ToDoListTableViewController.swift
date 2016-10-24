@@ -11,6 +11,7 @@ import UIKit
 class ToDoListViewController: UITableViewController {
     
     var tasks = [Task]()
+    var dels = [Task]()
     
     @IBAction func cancelToPlayersViewController(segue:UIStoryboardSegue) {
         
@@ -18,6 +19,14 @@ class ToDoListViewController: UITableViewController {
     
     @IBAction func savePlayerDetail(segue:UIStoryboardSegue) {
         
+    }
+    
+    
+    @IBAction func checkAll(_ sender: AnyObject) {
+        for task in tasks {
+            task.makeComplete()
+        }
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -71,7 +80,12 @@ class ToDoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            self.tasks.remove(at: indexPath.row)
+            let deleted = self.tasks.remove(at: indexPath.row)
+            deleted.deleted = true
+            self.dels.append(deleted)
+        }
+        else if editingStyle == .insert {
+            //self.tasks.index(at: indexPath.row) =
         }
         self.tableView.reloadData()
     }
@@ -112,6 +126,10 @@ class ToDoListViewController: UITableViewController {
                 }
             }
             new.completedTasks = newList
+            new.tableView.reloadData()
+        } else if segue.identifier == "deleted" {
+            let new = segue.destination as! RecentlyDeletedTableViewController
+            new.deletedTasks = self.dels
             new.tableView.reloadData()
         }
     }

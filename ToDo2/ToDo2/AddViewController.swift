@@ -35,7 +35,6 @@ class AddViewController: UIViewController {
             new.tasks.append(next)
             new.tableView.reloadData()
         }
-        
     }
     
     

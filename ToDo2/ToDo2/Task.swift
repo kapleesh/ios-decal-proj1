@@ -13,15 +13,19 @@ class Task {
     var title: String!
     var time: NSDate?
     var complete: Bool!
+    var deleted: Bool!
     
     init(title: String) {
         self.title = title
         self.complete = false
+        self.deleted = false
     }
     
     func makeComplete() {
-        self.complete = true
-        self.time = NSDate()
+        if self.complete == false {
+            self.complete = true
+            self.time = NSDate()
+        }
     }
     func makeIncomplete() {
         self.complete = false

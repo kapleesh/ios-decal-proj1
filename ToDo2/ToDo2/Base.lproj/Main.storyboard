@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -70,16 +71,27 @@
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Ebo-Ld-Uxn" id="Puf-E2-qVe"/>
-                            <outlet property="delegate" destination="Ebo-Ld-Uxn" id="1ge-E8-U6N"/>
                         </connections>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="eb7-5R-rwg">
-                        <barButtonItem key="leftBarButtonItem" title="Completed" id="XeL-4x-npY">
-                            <connections>
-                                <segue destination="gDW-bP-w4y" kind="show" identifier="statid" id="3hj-mQ-Vo0"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Completed" id="XeL-4x-npY">
+                                <connections>
+                                    <segue destination="gDW-bP-w4y" kind="show" identifier="statid" id="3hj-mQ-Vo0"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="✓ All" id="Eqs-rR-XPL">
+                                <connections>
+                                    <action selector="checkAll:" destination="Ebo-Ld-Uxn" id="L5L-jl-zmg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Recently Deleted" id="dMy-d7-xy1">
+                                <connections>
+                                    <segue destination="ttT-b6-DA9" kind="show" identifier="deleted" id="t96-H2-BsE"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tRP-M5-eRY">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="e0k-7E-xOZ"/>
@@ -118,7 +130,35 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOo-0C-1lq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="161" y="766"/>
+            <point key="canvasLocation" x="-127" y="831"/>
+        </scene>
+        <!--Recently Deleted Table View Controller-->
+        <scene sceneID="xTZ-UE-PIQ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4T1-b3-TjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="ttT-b6-DA9" userLabel="Recently Deleted Table View Controller" customClass="RecentlyDeletedTableViewController" customModule="ToDo2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oGA-jg-i1h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="delcell" id="Kae-QR-Bsc" userLabel="delcell">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kae-QR-Bsc" id="uMF-m1-HoE">
+                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ttT-b6-DA9" id="Mib-uj-0za"/>
+                            <outlet property="delegate" destination="ttT-b6-DA9" id="Gdk-ee-1kj"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="913" y="860"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZRv-Z5-fhJ">
